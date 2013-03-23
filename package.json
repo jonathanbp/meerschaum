@@ -1,0 +1,16 @@
+{
+  "name": "meerschaum",
+  "version": "0.0.1",
+  "description": "A fancy pipe.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "charting"
+  ],
+  "author": "Jonathan Bunde-Pedersen",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
