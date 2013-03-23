@@ -1,4 +1,4 @@
-# MEERSCAUM
+# MEERSCAUM ü_
 
 Meerschaum is a fancy pipe.
 
