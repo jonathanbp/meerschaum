@@ -1,0 +1,22 @@
+<html>
+<head>
+  <title>ü_ // HISTOGRAM</title>
+
+</head>
+<body>
+
+  hello, world
+
+  <script type="text/javascript" src="../components/d3/d3.js"></script>
+  <script type="text/javascript" src="../components/socket.io-client/dist/socket.io.min.js"></script>
+
+  <script type="text/javascript">
+
+    var socket = io.connect('http://localhost');
+    socket.on('data', function(data) {
+      console.log("data: "+data);
+    });
+
+  </script>
+</body>
+</html>

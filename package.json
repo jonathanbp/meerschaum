@@ -6,11 +6,24 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonathanbp/meerschaum"
+  },
   "keywords": [
     "charting"
   ],
   "author": "Jonathan Bunde-Pedersen",
   "license": "MIT",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "express": "~3.1.0",
+    "optimist": "~0.3.5",
+    "less-middleware": "~0.1.9",
+    "socket.io": "~0.9.13"
+  },
+  "devDependencies": {
+    "mocha": "~1.8.2",
+    "should": "~1.2.2"
+  }
 }
