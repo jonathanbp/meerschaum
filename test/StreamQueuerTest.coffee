@@ -4,6 +4,9 @@ StreamQueuer = require('../lib/StreamQueuer.js').StreamQueuer
 class StringStream extends require('events').EventEmitter
   constructor: () -> super()
 
+  resume: -> 
+  setEncoding: ->
+
   write: (s) ->
     @emit 'data', s
 

@@ -7,6 +7,7 @@
 #######################
 
 fs = require 'fs'
+colors = require 'colors'
 StreamQueuer = require('./StreamQueuer.js').StreamQueuer
 DisplayServer = require('./DisplayServer.js').DisplayServer
 
@@ -34,6 +35,9 @@ argv = require('optimist')
 
 # create new StreamQueuer to read from stdin
 sq = new StreamQueuer(process.stdin)
+sq.on 'end', -> 
+  process.stdout.write "<< EOF\n".green
+  process.exit 0
 
 # start server 
 ds = new DisplayServer(argv['d'], sq)

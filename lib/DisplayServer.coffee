@@ -24,8 +24,12 @@ class DisplayServer
 
     # when socket connection then connect streamqueuer with socket
     @io.sockets.on('connection', 
-      (socket) ->
-        socket.emit('data', 'hello')
+      (socket) =>
+        # connect stream and socket
+        @streamqueuer.on('data', 
+          (data) ->
+            socket.emit('data', data)
+        )
         # socket.on('otherevent', (d) -> console.log d)
     )
     

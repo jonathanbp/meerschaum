@@ -8,7 +8,9 @@ class StreamQueuer extends require('events').EventEmitter
     @stream.setEncoding 'utf8'
 
     @stream.on 'end', =>
+      @done = true
       clearInterval(@pushEvents)
+      @pushEvents = null
       @emitAndPurge()
 
 
@@ -45,20 +47,16 @@ class StreamQueuer extends require('events').EventEmitter
       else 
         @buffer += line
 
+    @on 'newListener', =>
+      if not @pushEvents? then @pushEvents = setInterval(@emitAndPurge, 500)
 
 
-    @pushEvents = setInterval(
-      => 
-        dataListeners = @listeners('data')
-        if dataListeners.length > 0 then @emitAndPurge()
-      500
-    )
-
-
-  emitAndPurge: (listeners) ->
-    while item = @items.shift()
-      do (item) =>
-        @emit('data', item)
+  emitAndPurge: (listeners) =>
+    if @done and @items.length is 0 then @emit('end')
+    if @listeners('data').length > 0
+      while item = @items.shift()
+        do (item) =>
+          @emit('data', item)
 
 
 exports.StreamQueuer = StreamQueuer

@@ -16,6 +16,10 @@
       StringStream.__super__.constructor.call(this);
     }
 
+    StringStream.prototype.resume = function() {};
+
+    StringStream.prototype.setEncoding = function() {};
+
     StringStream.prototype.write = function(s) {
       return this.emit('data', s);
     };
