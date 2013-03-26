@@ -11,24 +11,24 @@ colors = require 'colors'
 StreamQueuer = require('./StreamQueuer.js').StreamQueuer
 DisplayServer = require('./DisplayServer.js').DisplayServer
 
-displays = fs.readdirSync(__dirname + '/public/displays')
+views = fs.readdirSync(__dirname + '/public/views')
 
 # parse arguments
 argv = require('optimist')
-  .usage('Usage: $0 -d [display] -p [port]')
+  .usage('Usage: $0 -v [view] -p [port]')
   .options(
-    d:
-      alias: 'display',
-      describe: 'The type of display to generate.'
+    v:
+      alias: 'view',
+      describe: 'The type of view to generate.'
       required: true
     p:
       alias: 'port'
-      describe: 'The port from which the display is served.'
+      describe: 'The port from which the view is served.'
       default: 9999
   )
   .check(
     (argv) ->
-      if displays.indexOf(argv['d']) < 0 then throw "\"#{argv["d"]}\" not supported for display. Must be one of; #{displays.join(",")}."
+      if views.indexOf(argv['v']) < 0 then throw "\"#{argv["v"]}\" not supported for view. Must be one of; #{views.join(",")}."
   )
   .argv
 
@@ -40,7 +40,7 @@ sq.on 'end', ->
   process.exit 0
 
 # start server 
-ds = new DisplayServer(argv['d'], sq)
+ds = new DisplayServer(argv['v'], sq)
 ds.run(argv['p'])
 
 # echo back to stdout (for chaining)

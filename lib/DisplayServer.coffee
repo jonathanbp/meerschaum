@@ -2,7 +2,7 @@ express = require 'express'
 
 class DisplayServer
 
-  constructor: (@display, @streamqueuer) ->
+  constructor: (@view, @streamqueuer) ->
     
     @app = express()
 
@@ -19,7 +19,7 @@ class DisplayServer
 
     @app.get('/', 
       (req, res) =>
-        res.sendfile(__dirname + "/public/displays/#{@display}/index.html")
+        res.sendfile(__dirname + "/public/views/#{@view}/index.html")
     )
 
     # when socket connection then connect streamqueuer with socket
@@ -32,7 +32,7 @@ class DisplayServer
         )
         # socket.on('otherevent', (d) -> console.log d)
     )
-    
+
 
   run: (port) -> @server.listen(port)
 

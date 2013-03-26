@@ -13,6 +13,10 @@ class StreamQueuer extends require('events').EventEmitter
       @pushEvents = null
       @emitAndPurge()
 
+    v = """l
+      v = () -> djfkdjf
+    """
+
 
     # when data is received from stream queue it up
     @stream.on 'data', (line) =>
