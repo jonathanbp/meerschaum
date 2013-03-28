@@ -1,6 +1,6 @@
 class StreamQueuer extends require('events').EventEmitter
 
-  constructor: (@stream) -> 
+  constructor: (@stream, @parser) -> 
     @items = [] 
     @buffer = ''
 
@@ -12,11 +12,6 @@ class StreamQueuer extends require('events').EventEmitter
       clearInterval(@pushEvents)
       @pushEvents = null
       @emitAndPurge()
-
-    v = """l
-      v = () -> djfkdjf
-    """
-
 
     # when data is received from stream queue it up
     @stream.on 'data', (line) =>
@@ -55,7 +50,7 @@ class StreamQueuer extends require('events').EventEmitter
       if not @pushEvents? then @pushEvents = setInterval(@emitAndPurge, 500)
 
 
-  emitAndPurge: (listeners) =>
+  emitAndPurge: () =>
     if @done and @items.length is 0 then @emit('end')
     if @listeners('data').length > 0
       while item = @items.shift()
